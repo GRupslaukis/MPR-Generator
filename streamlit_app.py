@@ -1,12 +1,11 @@
 import streamlit as st
 import google.generativeai as genai
-import base64
 import os
 
-# Įkeli API raktą (įsirašyk į Streamlit Secrets: GEMINI_API_KEY)
+# API key
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-st.title("📐 WoodWOP MPR Generator (Gemini)")
+st.title("📐 WoodWOP MPR Generator (Gemini Flash)")
 
 uploaded_file = st.file_uploader("Įkelk brėžinio screenshotą", type=["png", "jpg", "jpeg"])
 
@@ -16,14 +15,15 @@ if uploaded_file is not None:
     if st.button("Generuoti MPR"):
         image_bytes = uploaded_file.getvalue()
 
-        model = genai.GenerativeModel("gemini-1.5-pro")
+        # Naudojam lengvesnį modelį
+        model = genai.GenerativeModel("gemini-1.5-flash")
 
         response = model.generate_content(
             [
                 "Sugeneruok tinkamą WoodWOP .mpr failą pagal šį brėžinį. Vadovaukis MPR PDF specifikacija.",
                 {"mime_type": "image/png", "data": image_bytes}
             ],
-            generation_config={"max_output_tokens": 1500}
+            generation_config={"max_output_tokens": 1200}
         )
 
         mpr_code = response.text
