@@ -15,9 +15,12 @@ if uploaded_file is not None:
         image_base64 = base64.b64encode(uploaded_file.getvalue()).decode("utf-8")
 
         response = client.chat.completions.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4o",   # <-- NAUJAS modelis
             messages=[
-                {"role": "system", "content": "Tu esi CNC WoodWOP .mpr failų generatorius. Vadovaukis woodWOP MPR PDF specifikacija."},
+                {
+                    "role": "system",
+                    "content": "Tu esi CNC WoodWOP .mpr failų generatorius. Vadovaukis woodWOP MPR PDF specifikacija."
+                },
                 {
                     "role": "user",
                     "content": [
