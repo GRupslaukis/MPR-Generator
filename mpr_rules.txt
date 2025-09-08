@@ -1,0 +1,36 @@
+WoodWOP MPR failo generavimo taisyklės:
+
+1. Failas privalo prasidėti [H] bloku.
+   - Nurodyti versiją: VERSION="4.0 Alpha"
+   - Nurodyti ruošinio dydį (_BSX, _BSY, _BSZ).
+   - X = ilgis, Y = plotis, Z = storis.
+
+2. Po header eina <100 \Werkstck\> blokas.
+   - Parametrai: LA=X, BR=Y, DI=Z.
+
+3. Skylės (BohrVert):
+   - Naudoti <102 \BohrVert\>.
+   - XA=X, YA=Y, TI=diametras, DU=gylis.
+   - BM="LS", AN="1".
+   - Pavyzdys:
+     <102 \BohrVert\
+     XA="100"
+     YA="10.5"
+     TI="14"
+     DU="18"
+     BM="LS"
+     AN="1"
+     ...
+
+4. Kišenės (Tasche):
+   - Naudoti <112 \Tasche\>.
+   - XA, YA = centro koordinatės.
+   - LA = ilgis, BR = plotis, RD = spindulys, TI = gylis.
+
+5. Komentarai:
+   - Naudoti <101 \Kommentar\>.
+
+6. Failas visada baigiasi simboliu !.
+
+7. Jokio papildomo teksto ar paaiškinimų – tik validus .mpr turinys.
+
